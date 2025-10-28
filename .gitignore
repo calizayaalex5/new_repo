@@ -17,3 +17,7 @@ node_modules
 
 #Readme file
 README.md 
+
+#ignore yaml file
+pnpm-lock.yaml
+
