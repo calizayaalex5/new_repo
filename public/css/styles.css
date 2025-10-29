@@ -4,3 +4,15 @@
 *:after {
   box-sizing: border-box;
 }
+
+
+
+/******* Body Styles ***************/
+
+body {
+  margin: 0;
+}
+
+header {
+  background-color: blue;
+}
