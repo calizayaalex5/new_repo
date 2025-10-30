@@ -11,11 +11,177 @@
 
 body {
   margin: 0;
+  background-image: url('/images/site/checkerboard.jpg');
+  background-repeat: repeat;
+  background-size: auto;
 }
 
+.wrapper {
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 5rem;
+  border-radius: 15px;
+  background-color: white;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    margin: 2rem 0;
+  }
+  
+}
+/******* Header Styles ***************/
 header {
-  background-color: blue;
+  background-color: aliceblue;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+
+}
+
+header a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+header .siteName {
+  font-size: 35px;
+}
+
+/******* Navigation Styles ***************/
+nav {
+  background-color: black;
+  margin: 0 .5rem;
+}
+
+nav ul{
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+  list-style: none;
+  gap: 1rem;
+  color: white;
+  padding: 0;
+}
+
+nav ul li {
+  cursor: pointer;
+}
+
+/******* Main Styles ***************/
+
+/********HERO SECTION***************/
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.DMC_delorean {
+  z-index: 100;
+  background-color: rgba(165, 157, 157, 0.233);
+  border-radius: 10px;
+  padding: 1rem;
+
+  position: absolute;
+  top: 15%;
+  right: 60%;
+}
+
+.DMC_delorean h2 {
+  margin: 0;
+}
+
+.DMC_delorean ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.DMC_delorean img {
+  max-width: 150px;
+  min-width: 100px;
+  height: auto;
+}
+
+/********* Featured Section ***************/
+
+.info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin: auto 1rem;
+}
+
+.upgrades {
+  display: grid;
+  grid-template-areas: 
+    "title title"
+    "upgrade1 upgrade2"
+    "upgrade3 upgrade4";
+}
+    /******* Upgrade Items Area**********/
+    .upgrades h3 {
+      grid-area: title;
+      text-align: center;
+    }
+    .upgrade1 {
+      grid-area: upgrade1;
+    }
+    .upgrade2 {
+      grid-area: upgrade2;
+    }
+    .upgrade3 {
+      grid-area: upgrade3;
+    }
+    .upgrade4 {
+      grid-area: upgrade4;
+    }
+
+.upgrade-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.item-img img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/********* AREAS REACTIVE ************/
+
+@media only screen and (max-width: 600px) {
+  .info {
+    grid-template-areas: 
+      "reviews"
+      "upgrades";
+  }
+
+  .reviews {
+    grid-area: reviews;
+  }
+  .upgrades {
+    grid-area: upgrades;
+  }
+
+}
+/******* Footer Styles ***************/
+
+footer {
+  padding: 1rem;
 }
