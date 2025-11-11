@@ -7,31 +7,30 @@ require('dotenv').config(); // importa el paquete dotenv para manejar variables 
  * If - else will make determination which to use
  * *************** */
 let pool //se cerea una variable pool
-if (process.env.NODE_ENV === 'development') {
-    pool = new Pool({
+if (process.env.NODE_ENV === 'production') {
+        pool = new Pool({
         connectionString: process.env.DATABASE_URL,
         ssl: {
-            rejectUnauthorized: false,
-        }, // objeto SSL para conexiones seguras
-    })
-
-    // Added for troubleshooting queries
-    // during development
-    module.exports = {
-        async query(text, params) {
-            try {
-                const res = await pool.query(text, params)
-                console.log('Executed query:', { text })
-                return res
-            } catch (error) {
-                console.error('error in query', { text })
-                throw error
-            }
+        rejectUnauthorized: false,
         },
-    }; // exporta un objeto con una función query para ejecutar consultas
-} else {
+    })
+    } else {
+    // ✅ Desarrollo local (pgAdmin o PostgreSQL local)
     pool = new Pool({
         connectionString: process.env.DATABASE_URL,
     })
-    module.exports = pool
+}
+
+// Export universal: funciona igual en ambos entornos
+module.exports = {
+    async query(text, params) {
+        try {
+        const res = await pool.query(text, params)
+        console.log('Executed query:', { text })
+        return res
+        } catch (error) {
+        console.error('Error in query:', error.message)
+        throw error
+        }
+    },
 }
