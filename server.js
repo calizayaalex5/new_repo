@@ -10,6 +10,8 @@ const expressLayouts = require("express-ejs-layouts") //muestra conb que trabaja
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
+const baseController = require("./controllers/baseController")
+const inventoryRoute = require("./routes/inventoryRoute")
 
 /* ***********************
  * View Engine and templates
@@ -22,11 +24,9 @@ app.set("layout", "./layouts/layout") //not at viwes root //busca elarchivo del 
  * Routes
  *************************/
 app.use(static)
-
+app.use("/inv", inventoryRoute)
 //index route
-app.get("/", function (req, res) {
-  res.render("index", {title: "Home"})
-})
+app.get("/", baseController.buildHome)
 
 /* ***********************
  * Local Server Information

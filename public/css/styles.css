@@ -229,3 +229,39 @@ nav ul li {
 footer {
   padding: 1rem;
 }
+
+/******** inv-display Styles ***************/
+
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+
+  list-style: none;
+  padding: 0;
+
+  margin: 1rem;
+}
+
+#inv-display li {
+  border-radius: 10px;
+  border: 1px solid black;
+  overflow: hidden;
+}
+/*images*/
+#inv-display li a {
+  width: 100%;
+}
+
+#inv-display li a img {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px 10px 0 0;
+}
+/* NAME PRICE */
+
+#inv-display li .namePrice {
+  margin: 1rem;
+
+}
