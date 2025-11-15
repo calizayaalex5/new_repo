@@ -12,6 +12,7 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
+const errorRoute = require("./routes/errorRoute")
 const utilities = require("./utilities")
 
 /* ***********************
@@ -26,6 +27,7 @@ app.set("layout", "./layouts/layout") //not at viwes root //busca elarchivo del 
  *************************/
 app.use(static)
 app.use("/inv", inventoryRoute)
+app.use("/error", errorRoute)
 //index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
 // File Not Found Route - must be last route in list
