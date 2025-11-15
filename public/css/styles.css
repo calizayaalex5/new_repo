@@ -74,6 +74,16 @@ nav ul li {
   cursor: pointer;
 }
 
+nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+nav ul li a:hover {
+  background-color: white;
+  color: black;
+}
+
 /******* Main Styles ***************/
 
 /********HERO SECTION***************/
@@ -247,6 +257,7 @@ footer {
   border-radius: 10px;
   border: 1px solid black;
   overflow: hidden;
+  max-width: 300px;
 }
 /*images*/
 #inv-display li a {
@@ -265,3 +276,27 @@ footer {
   margin: 1rem;
 
 }
+
+/* DETAILS */
+
+.vehicle-detail {
+  display: grid;
+  grid-template-areas: 
+   "img vehicle";
+  gap: 1rem;
+}
+
+.vehicle-detail img {
+ grid-area: img;
+}
+
+.vehicle-detail .vehicle-info {
+  grid-area: vehicle;
+}
+
+  @media only screen and (max-width: 1000px) {
+    .vehicle-detail {
+      display: flex;
+      flex-direction: column;
+    }
+  }
