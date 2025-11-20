@@ -300,3 +300,53 @@ footer {
       flex-direction: column;
     }
   }
+
+/* FORMULARIO */
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+fieldset {
+  border-radius: 30px;
+  background: white;
+
+  padding: 2rem;
+
+  box-shadow:  13px 13px 36px #d9d9d9,
+              -13px -13px 36px #ffffff;
+
+}
+
+input,
+label,
+button {
+  display: block;  
+  border: none;
+  border-radius: 15px;
+}
+
+input {
+  height: 45px;
+  width: 400px;
+  
+  margin: 1rem 0;
+  padding: 1rem;
+
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: inset 6px 6px 12px #e8e8e8,
+              inset -6px -6px 12px #ffffff;
+}
+
+.formulario .button {
+  height: 45px;
+  width: 400px;
+  box-shadow: none;
+  background: rgb(190, 190, 190);
+
+  margin-top: 2rem;
+}

@@ -1,0 +1,54 @@
+<div class="register">
+    <h1><%= title %></h1>
+    <%- messages() %>
+
+    <% if (errors) { %>
+      <ul class="notice">
+      <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+      <%  }) %>
+      </ul>
+    <% } %>
+
+    <div class="formulario">
+        <form action="/account/register" method="POST">
+            <fieldset>
+                <label for="account_firstname">First Name</label>
+                <input type="text" id="account_firstname" name="account_firstname" required>
+
+                <label for="account_lastname">Last Name</label>
+                <input type="text" id="account_lastname" name="account_lastname" required>
+
+                <label for="account_email">Email:</label>
+                <input type="email" id="account_email" name="account_email" required>
+
+                <label for="password">Password:</label>
+                <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
+                <div class="password-toggle">
+                    <input type="password" id="account_password" name="account_password" required minlength="12" pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{12,}$">
+                    <button type="button" id="togglePassword">Show</button>
+                </div>
+                <button type="submit">Register</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<!-- 
+//////////////////////SCRIPT////////////////////////////////
+-->
+<script>
+  const passwordInput = document.getElementById("account_password");
+  const toggleButton = document.getElementById("togglePassword");
+
+  toggleButton.addEventListener("click", () => {
+    const type = passwordInput.getAttribute("type") === "password" 
+      ? "text" 
+      : "password";
+
+    passwordInput.setAttribute("type", type);
+
+    toggleButton.textContent = 
+      type === "password" ? "Show" : "Hide";
+  });
+</script>
