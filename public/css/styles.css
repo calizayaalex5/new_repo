@@ -350,3 +350,39 @@ input {
 
   margin-top: 2rem;
 }
+
+/*///////////////// FORM ///////////////////////////*/
+
+.inventory-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.inventory-form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.inventory-form input,
+.inventory-form textarea,
+.inventory-form select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+  box-sizing: border-box;
+}
+
+.inventory-form button {
+  display: block;
+  padding: 0.7rem 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
