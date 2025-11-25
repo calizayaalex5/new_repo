@@ -380,9 +380,80 @@ input {
   box-sizing: border-box;
 }
 
-.inventory-form button {
-  display: block;
-  padding: 0.7rem 1rem;
-  margin-top: 1rem;
+form button[type="submit"] {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1rem;
+  background-color: #2d7a2d; /* verde elegante */
+  color: white;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.1s ease;
 }
+
+form button[type="submit"]:hover {
+  background-color: #236123;
+}
+
+form button[type="submit"]:active {
+  transform: scale(0.97);
+}
+
+form button[type="submit"]:focus {
+  outline: 2px solid #7ad77a;
+  outline-offset: 2px;
+}
+
+.show-password {
+  max-width: 400px;
+  position: relative;
+}
+
+.formulario span {
+  display: block;
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 8px;
+  margin-top: -5px;
+  line-height: 1.3;
+  font-style: italic;
+  
+  max-width: 400px;
+}
+
+/* ///////////BUTON/////////////////////*/
+
+#togglePassword {
+  position: relative;
+  top: -45px;
+  left: 320px;
+
+  margin-left: 10px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+
+  box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#togglePassword:hover {
+  background-color: #357ABD;
+}
+
+#togglePassword:active {
+  transform: scale(0.95);
+}
+
+#togglePassword:focus {
+  outline: 2px solid #82bfff;
+  outline-offset: 2px;
+}
+
+/* /////////// */

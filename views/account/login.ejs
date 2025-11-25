@@ -9,9 +9,10 @@
 
                 <label for="account_password">Password</label>
                 <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
-                <input type="password" id="account_password" name="account_password" required minlength="12" pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{12,}$">
-                <button type="button" id="togglePassword">Show</button>
-
+                <div class="show-password">
+                  <input type="password" id="account_password" name="account_password" required minlength="12" pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{12,}$">
+                  <button type="button" id="togglePassword">Show</button>
+                </div>
                 <button type="submit">Login</button>
             </fieldset>
         </form>
