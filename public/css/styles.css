@@ -456,4 +456,230 @@ form button[type="submit"]:focus {
   outline-offset: 2px;
 }
 
-/* /////////// */
+/* ///////////MANAGEMENT///////////// */
+
+.manegement {
+  max-width: 400px;
+  margin: 25px auto;
+  padding: 20px;
+  background: #f7f9fc;
+  border: 1px solid #d6dce5;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.manegement ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.manegement li {
+  margin-bottom: 15px;
+}
+
+.manegement a {
+  display: block;
+  text-decoration: none;
+  background-color: #4a90e2;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-size: 1rem;
+  text-align: center;
+  transition: background-color 0.25s ease, transform 0.1s ease;
+}
+
+.manegement a:hover {
+  background-color: #357ABD;
+}
+
+.manegement a:active {
+  transform: scale(0.97);
+}
+
+.manegement a:focus {
+  outline: 2px solid #82bfff;
+  outline-offset: 3px;
+}
+
+/* ///////////ADD INVENTORY////////////// */
+
+.add-inventory {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #f7f9fc;
+  border: 1px solid #d6dce5;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.add-inventory h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2d3e50;
+}
+
+
+.notice {
+  background: #ffe3e3;
+  border: 1px solid #ffb3b3;
+  padding: 12px;
+  border-radius: 6px;
+  color: #8b0000;
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.notice li {
+  margin-bottom: 5px;
+}
+
+.add-inventory-form {
+  width: 100%;
+}
+
+.inventory-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+
+.inventory-form label {
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: -5px;
+}
+
+
+.inventory-form input,
+.inventory-form textarea,
+.inventory-form select {
+  width: 100%;
+  padding: 10px 12px;
+  background: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.inventory-form input:focus,
+.inventory-form textarea:focus,
+.inventory-form select:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 4px rgba(74,144,226,0.4);
+  outline: none;
+}
+
+.inventory-form button[type="submit"] {
+  margin-top: 10px;
+  padding: 12px 18px;
+  background-color: #2d7a2d;
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.1s ease;
+}
+
+.inventory-form button[type="submit"]:hover {
+  background-color: #236123;
+}
+
+.inventory-form button[type="submit"]:active {
+  transform: scale(0.97);
+}
+
+.inventory-form button[type="submit"]:focus {
+  outline: 2px solid #7ad77a;
+  outline-offset: 3px;
+}
+
+/* //////////ADD CLASSIFICATION /////////////// */
+.add-classification {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #f7f9fc;
+  border: 1px solid #d6dce5;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+/* TÍTULO */
+.add-classification h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2d3e50;
+}
+
+/* MENSAJES DE ERROR */
+.notice {
+  background: #ffe3e3;
+  border: 1px solid #ffb3b3;
+  padding: 12px;
+  border-radius: 6px;
+  color: #8b0000;
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.notice li {
+  margin-bottom: 5px;
+}
+
+.add-classification-form {
+  width: 100%;
+}
+
+.classification-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.classification-form input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: white;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.classification-form input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 4px rgba(74,144,226,0.4);
+  outline: none;
+}
+
+/* BOTON */
+.classification-form button[type="submit"] {
+  padding: 12px 18px;
+  background-color: #4a90e2;
+  color: white;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.1s ease;
+}
+
+.classification-form button[type="submit"]:hover {
+  background-color: #357ABD;
+}
+
+.classification-form button[type="submit"]:active {
+  transform: scale(0.97);
+}
+
+.classification-form button[type="submit"]:focus {
+  outline: 2px solid #82bfff;
+  outline-offset: 3px;
+}
