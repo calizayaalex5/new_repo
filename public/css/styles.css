@@ -427,7 +427,7 @@ form button[type="submit"]:focus {
 
 #togglePassword {
   position: relative;
-  top: -45px;
+  top: -50px;
   left: 320px;
 
   margin-left: 10px;
