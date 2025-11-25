@@ -238,7 +238,12 @@ nav ul li a:hover {
 
 footer {
   padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
 }
+
+
 
 /******** inv-display Styles ***************/
 
