@@ -1,0 +1,32 @@
+<main>
+  <div class="account-management">
+    <h1><%= title %></h1>
+    <%- messages() %>
+
+    <% if (errors) { %>
+      <ul class="notice">
+        <% errors.array().forEach(error => { %>
+          <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+
+    <!-- GREETING FOR ALL USERS -->
+    <h2>Welcome <%= accountData.account_firstname %></h2>
+
+    <p>
+      <a href="/account/update/<%= accountData.account_id %>">
+        Update Account Information
+      </a>
+    </p>
+
+    <!-- ONLY EMPLOYEE + ADMIN GET INVENTORY ACCESS -->
+    <% if (accountData.account_type === 'Employee' || accountData.account_type === 'Admin') { %>
+      <h3>Inventory Management</h3>
+      <p>
+        <a href="/inv/">Manage Inventory</a>
+      </p>
+    <% } %>
+
+  </div>
+</main>

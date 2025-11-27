@@ -1,4 +1,6 @@
 const invModel = require('../models/inventory-model')
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 const Util = {}
 
 /* ************************
@@ -80,7 +82,7 @@ Util.buildClassificationList = async function (classification_id = null) {
         '<select name="classification_id" id="classificationList" required>'
     classificationList += '<option value="">Choose a Classification</option>'
     data.rows.forEach((row) => {
-        classificationList += '<option value""' + row.classification_id + '""'
+        classificationList += '<option value="' + row.classification_id + '"'
         if (
             classification_id != null &&
             row.classification_id == classification_id
@@ -99,5 +101,46 @@ Util.buildClassificationList = async function (classification_id = null) {
  * General Error Handling
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+    if (req.cookies.jwt) {
+        jwt.verify(
+            req.cookies.jwt,
+            process.env.ACCESS_TOKEN_SECRET,
+            function (err, accountData) {
+
+                if (err) {
+                    res.clearCookie("jwt")
+                    res.locals.loggedin = false
+                    return next()
+                }
+
+                res.locals.accountData = accountData
+                res.locals.loggedin = true
+                return next()
+            }
+        )
+    } else {
+        res.locals.loggedin = false
+        next()
+    }
+}
+
+/* ****************************************
+*  Check Login
+* ************************************ */
+Util.checkLogin = (req, res, next) => {
+    if (res.locals.loggedin) {
+        next()
+    } else {
+        req.flash("notice", "Please log in")
+        return res.redirect("/account/login")
+    }
+}
+
 
 module.exports = Util

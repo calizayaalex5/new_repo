@@ -2,8 +2,25 @@
     <span class="siteName">
         <a href="/" title="Return to home page">CSE Motors</a>
     </span>
+
     <div class="tools">
-        <a title="Click to log in" href="/account/login">My Account</a>
+
+        <% if (loggedin && accountData) { %>
+
+            <!-- Link al management -->
+            <a href="/account/" title="Account Management">
+                Welcome <%= accountData.account_firstname %>
+            </a>
+
+            <!-- Logout -->
+            <a href="/account/logout" title="Logout">Logout</a>
+
+        <% } else { %>
+
+            <!-- Si NO hay login -->
+            <a href="/account/login" title="Click to log in">My Account</a>
+
+        <% } %>
+
     </div>
 </header>
-

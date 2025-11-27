@@ -90,42 +90,183 @@ async function accountLogin(req, res) {
     let nav = await utilities.getNav()
     const { account_email, account_password } = req.body
     const accountData = await accountModel.getAccountByEmail(account_email)
+
     if (!accountData) {
         req.flash("notice", "Please check your credentials and try again.")
-        res.status(400).render("account/login", {
-        title: "Login",
-        nav,
-        errors: null,
-        account_email,
+        return res.status(400).render("account/login", {
+            title: "Login",
+            nav,
+            errors: null,
+            account_email,
         })
-        return
     }
+
     try {
-        if (await bcrypt.compare(account_password, accountData.account_password)) {
+        const valid = await bcrypt.compare(account_password, accountData.account_password)
+
+        if (valid) {
+
             delete accountData.account_password
-            const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
-            if(process.env.NODE_ENV === 'development') {
-                res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+
+            const accessToken = jwt.sign(
+                {
+                    account_id: accountData.account_id,
+                    account_firstname: accountData.account_firstname,
+                    account_lastname: accountData.account_lastname,
+                    account_email: accountData.account_email,
+                    account_type: accountData.account_type
+                },
+                process.env.ACCESS_TOKEN_SECRET,
+                { expiresIn: "1h" }
+            )
+
+            // Save cookie
+            if (process.env.NODE_ENV === 'development') {
+                res.cookie("jwt", accessToken, {
+                    httpOnly: true,
+                    maxAge: 3600 * 1000
+                })
             } else {
-                res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+                res.cookie("jwt", accessToken, {
+                    httpOnly: true,
+                    secure: true,
+                    maxAge: 3600 * 1000
+                })
             }
+
             return res.redirect("/account/")
-            }
+        } 
         else {
-            req.flash("message notice", "Please check your credentials and try again.")
-            res.status(400).render("account/login", {
+            req.flash("notice", "Please check your credentials and try again.")
+            return res.status(400).render("account/login", {
                 title: "Login",
                 nav,
                 errors: null,
                 account_email,
             })
         }
+
     } catch (error) {
+        console.error("LOGIN ERROR:", error)
         throw new Error('Access Forbidden')
     }
 }
 
+/* ****************************************
+ *  BUILD ACCOUNT MANAGEMENT
+ * ************************************ */
+async function buildAccountManagement(req, res, next) {
+  let nav = await utilities.getNav()
+  const accountData = res.locals.accountData
 
+  res.render("account/management", {
+    title: "Account Management",
+    nav,
+    accountData, 
+    errors: null
+  })
+}
 
+/* ****************************************
+ *  Build update Account
+ * ************************************ */
+async function buildUpdateAccount(req, res, next) {
+  let nav = await utilities.getNav()
+  const account_id = parseInt(req.params.account_id)
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin }
+  const accountData = res.locals.accountData
+
+  // Validar que solo puedan editar su propia cuenta
+  if (accountData.account_id !== account_id) {
+    req.flash("notice", "You are not allowed to edit this account.")
+    return res.redirect("/account/")
+  }
+
+  res.render("account/update-account", {
+    title: "Update Account Information",
+    nav,
+    errors: null,
+    accountData,
+    locals: null
+  })
+}
+
+/* ****************************************
+ *  Update Account Controller
+ * ************************************ */
+async function updateAccount (req, res, next) {
+    let nav = await utilities.getNav()
+    const {
+        account_firstname,
+        account_lastname,
+        account_email,
+        account_id 
+    } = req.body
+
+    const account_id_int = parseInt(req.body.account_id)
+
+    const updateResult = await accountModel.updateAccount(
+        account_firstname,
+        account_lastname,
+        account_email,
+        account_id_int
+    )
+
+    if (updateResult) {
+        req.flash("notice", "Account information updated successfully.")
+
+        // reconstruir JWT con nuevos datos
+        const newToken = jwt.sign(
+        {
+            account_id: account_id_int,
+            account_firstname,
+            account_lastname,
+            account_email,
+            account_type: res.locals.accountData.account_type
+        },
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: "1h" }
+        )
+
+        res.cookie("jwt", newToken, { httpOnly: true, maxAge: 3600 * 1000 })
+
+        return res.redirect("/account/")
+    }
+
+    req.flash("notice", "Update failed.")
+    return res.status(500).render("account/update-account", {
+        title: "Update Account Information",
+        nav,
+        errors: null,
+        accountData: res.locals.accountData,
+        locals: req.body
+    })
+}
+
+async function updatePassword(req, res, next) {
+    let nav = await utilities.getNav()
+    const { account_password, account_id } = req.body
+
+    const hashedPassword = await bcrypt.hash(account_password, 10)
+
+    const result = await accountModel.updatePassword(
+        hashedPassword,
+        account_id
+    )
+
+    if (result) {
+        req.flash("notice", "Password updated successfully.")
+        return res.redirect("/account/")
+    }
+
+    req.flash("notice", "Password update failed.")
+    res.status(500).render("account/update-account", {
+        title: "Update Account Information",
+        nav,
+        errors: null,
+        accountData: res.locals.accountData,
+        locals: req.body
+    })
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, buildUpdateAccount, updateAccount, updatePassword }

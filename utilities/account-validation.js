@@ -114,4 +114,93 @@ const errors = validationResult(req)
     next()
 }
 
+/* **********************************
+ *  Update Account Data Validation Rules
+ * ********************************** */
+validate.updateAccountRules = () => {
+    return [
+        body("account_firstname")
+        .trim()
+        .escape()
+        .notEmpty()
+        .withMessage("Please provide a first name."),
+
+        body("account_lastname")
+        .trim()
+        .escape()
+        .notEmpty()
+        .withMessage("Please provide a last name."),
+
+        body("account_email")
+        .trim()
+        .escape()
+        .isEmail()
+        .withMessage("A valid email is required.")
+        .normalizeEmail()
+        .custom(async (email, { req }) => {
+            const existingEmail = await accountModel.checkExistingEmail(email)
+
+            // check if email exists
+            if (existingEmail && email !== req.body.current_email) {
+            throw new Error("Email already exists. Please use a different email.")
+            }
+        })
+    ]
+}
+
+validate.checkUpdateData = async (req, res, next) => {
+    const errors = validationResult(req)
+    const accountData = res.locals.accountData
+    let nav = await utilities.getNav()
+
+    if (!errors.isEmpty()) {
+        return res.status(400).render("account/update-account", {
+        title: "Update Account Information",
+        nav,
+        errors,
+        accountData,
+        locals: req.body
+        })
+    }
+
+    next()
+}
+
+/* **********************************
+ *  Password Change Validation Rules
+ * ********************************** */
+validate.passwordRules = () => {
+    return [
+        body("account_password")
+        .trim()
+        .notEmpty()
+        .isStrongPassword({
+            minLength: 12,
+            minLowercase: 1,
+            minUppercase: 1,
+            minNumbers: 1,
+            minSymbols: 1,
+        })
+        .withMessage("Password does not meet requirements.")
+    ]
+}
+
+validate.checkPasswordData = async (req, res, next) => {
+  const errors = validationResult(req)
+  const accountData = res.locals.accountData
+  let nav = await utilities.getNav()
+
+  if (!errors.isEmpty()) {
+    return res.status(400).render("account/update-account", {
+      title: "Update Account Information",
+      nav,
+      errors,
+      accountData,
+      locals: req.body
+    })
+  }
+
+  next()
+}
+
 module.exports = validate

@@ -1,0 +1,100 @@
+<main>
+    <h1><%= title %></h1>
+    <%- messages() %>
+
+    <% if (errors) { %>
+        <ul class="notice">
+        <% errors.array().forEach(error => { %>
+            <li><%= error.msg %></li>
+        <% }) %>
+        </ul>
+    <% } %>
+
+    <!-- ==========================
+        ACCOUNT INFORMATION UPDATE
+    ============================== -->
+    <section class="account-section">
+        <h2>Update Account Information</h2>
+
+        <form action="/account/update" method="POST" class="account-form">
+
+        <label for="account_firstname">First Name</label>
+        <input
+            type="text"
+            id="account_firstname"
+            name="account_firstname"
+            required
+            value="<%= locals?.account_firstname || accountData.account_firstname %>"
+        >
+
+        <label for="account_lastname">Last Name</label>
+        <input
+            type="text"
+            id="account_lastname"
+            name="account_lastname"
+            required
+            value="<%= locals?.account_lastname || accountData.account_lastname %>"
+        >
+
+        <label for="account_email">Email</label>
+        <input
+            type="email"
+            id="account_email"
+            name="account_email"
+            required
+            value="<%= locals?.account_email || accountData.account_email %>"
+        >
+
+        <!-- Hidden account_id -->
+        <input type="hidden"
+            name="account_id"
+            value="<%= accountData.account_id %>"
+        >
+        <input type="hidden"
+            name="current_email"
+            value="<%= accountData.account_email %>"
+        >
+
+
+        <button type="submit">Update Account</button>
+        </form>
+    </section>
+
+
+
+    <!-- ==========================
+        PASSWORD CHANGE FORM
+    ============================== -->
+    <section class="password-section">
+        <h2>Change Password</h2>
+
+        <p>Your new password must meet the following requirements:</p>
+        <ul>
+        <li>Minimum 12 characters</li>
+        <li>At least 1 uppercase letter</li>
+        <li>At least 1 number</li>
+        <li>At least 1 special character</li>
+        </ul>
+
+        <form action="/account/update-password" method="POST" class="password-form">
+
+        <label for="account_password">New Password</label>
+        <input
+            type="password"
+            id="account_password"
+            name="account_password"
+            required
+            pattern="(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{12,}"
+        >
+
+        <!-- Hidden account_id -->
+        <input type="hidden"
+            name="account_id"
+            value="<%= accountData.account_id %>"
+        >
+
+        <button type="submit">Change Password</button>
+        </form>
+    </section>
+
+</main>

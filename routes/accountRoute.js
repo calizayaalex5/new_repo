@@ -29,4 +29,42 @@ router.post(
     utilities.handleErrors(accountController.accountLogin)
 )
 
+router.get(
+    "/",
+    utilities.checkLogin,
+    utilities.handleErrors(accountController.buildAccountManagement)
+)
+
+// Update Account Information View
+router.get(
+    "/update/:account_id",
+    utilities.checkLogin,
+    utilities.handleErrors(accountController.buildUpdateAccount)
+)
+
+router.post(
+    "/update",
+    utilities.checkLogin,
+    regValidate.updateAccountRules(),    
+    regValidate.checkUpdateData,
+    utilities.handleErrors(accountController.updateAccount)
+)
+
+router.post(
+    "/update-password",
+    utilities.checkLogin,
+    regValidate.passwordRules(),   
+    regValidate.checkPasswordData,
+    utilities.handleErrors(accountController.updatePassword)
+)
+
+router.get(
+    "/logout",
+    (req, res) => {
+        res.clearCookie("jwt")  
+        req.flash("notice", "You have been logged out.")
+        return res.redirect("/")  
+    }
+)
+
 module.exports = router
