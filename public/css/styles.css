@@ -756,3 +756,206 @@ form button[type="submit"]:focus {
 #inventoryDisplay tr:hover {
   background-color: #e8f1ff;
 }
+
+/* ===========================
+   ACCOUNT MANAGEMENT
+=========================== */
+.account-management {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+}
+
+.account-management h1 {
+  margin-bottom: .5rem;
+}
+
+.account-management h2 {
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+}
+
+.account-management h3 {
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+  font-size: 1.1rem;
+}
+
+.account-links {
+  margin: 1rem 0 2rem;
+}
+
+.account-links a {
+  display: inline-block;
+  margin-right: 1rem;
+  padding: .4rem .8rem;
+  border-radius: 4px;
+  background-color: #1565c0;
+  color: #fff;
+  text-decoration: none;
+  font-size: .95rem;
+}
+
+.account-links a:hover {
+  background-color: #0d47a1;
+}
+
+/* ===========================
+   UPDATE ACCOUNT / PASSWORD
+=========================== */
+.account-section,
+.password-section {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: 6px;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+}
+
+.account-section h2,
+.password-section h2 {
+  margin-bottom: 1rem;
+}
+
+.account-form,
+.password-form {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+.account-form label,
+.password-form label {
+  font-weight: 600;
+  font-size: .95rem;
+}
+
+.account-form input,
+.password-form input {
+  padding: .4rem .5rem;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  font-size: .95rem;
+}
+
+.account-form input:focus,
+.password-form input:focus {
+  outline: none;
+  border-color: #1565c0;
+  box-shadow: 0 0 0 1px #1565c0;
+}
+
+.account-form button,
+.password-form button {
+  margin-top: .75rem;
+  padding: .5rem .9rem;
+  border-radius: 4px;
+  border: none;
+  background-color: #1565c0;
+  color: #fff;
+  font-size: .95rem;
+  cursor: pointer;
+}
+
+.account-form button:hover,
+.password-form button:hover {
+  background-color: #0d47a1;
+}
+
+.password-section ul {
+  margin: .5rem 0 1rem 1.2rem;
+  font-size: .9rem;
+}
+
+/* ===========================
+   INVENTORY MANAGEMENT
+=========================== */
+.management-page {
+  max-width: 950px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+}
+
+.management-page h1 {
+  margin-bottom: 1rem;
+}
+
+.management-page p {
+  margin-bottom: 1rem;
+}
+
+/* select de clasificación */
+#classificationList {
+  padding: .4rem .5rem;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  font-size: .95rem;
+  margin-bottom: 1rem;
+}
+
+/* tabla de inventario */
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: .95rem;
+}
+
+#inventoryDisplay thead {
+  background-color: #eeeeee;
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+  padding: .5rem .75rem;
+  border: 1px solid #ddd;
+}
+
+#inventoryDisplay tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+#inventoryDisplay a {
+  color: #1565c0;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+#inventoryDisplay a:hover {
+  text-decoration: underline;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 600px) {
+  #top-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem;
+  }
+
+  .account-section,
+  .password-section,
+  .management-page {
+    padding: 1rem;
+  }
+
+  #inventoryDisplay th,
+  #inventoryDisplay td {
+    font-size: .85rem;
+  }
+}
+
+
+.logout-button {
+  background-color: #333;
+  color: yellow;
+
+  padding: .5rem 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+}
