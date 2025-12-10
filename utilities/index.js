@@ -10,7 +10,12 @@ Util.getNav = async function (req, res, next) {
     let data = await invModel.getClassifications()
     console.log(data)
     let list = '<ul>'
+    //home
     list += '<li><a href="/" title="Home Page">Home</a></li>'
+    
+    //favorites page
+    list += '<li><a href="/favorites" title="View your favorites">Favorites ❤️</a></li>'
+
     data.rows.forEach((row) => {
         list += "<li>"
         list +=
@@ -67,7 +72,7 @@ Util.buildVehicleHTML = async function (data) {
         <div class="vehicle-info">
         <h2>${data.inv_year} ${data.inv_make} ${data.inv_model}</h2>
         <span class="price">$${new Intl.NumberFormat("en-US").format(data.inv_price)}</span>
-        <p><strong>Mileage:</strong> ${new Intl.NumberFormat("en-US").format(data.inv_mileage)} miles</p>
+        <p><strong>Mileage:</strong> ${new Intl.NumberFormat("en-US").format(data.inv_miles)} miles</p>
         <p><strong>Description:</strong> ${data.inv_description}</p>
         <p><strong>Color:</strong> ${data.inv_color}</p>
         </div>
@@ -75,6 +80,7 @@ Util.buildVehicleHTML = async function (data) {
     `
     return html
 }
+
 
 Util.buildClassificationList = async function (classification_id = null) {
     let data = await invModel.getClassifications()

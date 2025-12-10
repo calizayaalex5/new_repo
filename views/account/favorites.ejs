@@ -1,0 +1,23 @@
+<div class="favorites">
+    <h1>My Favorites ❤️</h1>
+
+    <% if (favorites.length === 0) { %>
+        <p>You haven't added any favorites yet.</p>
+
+    <% } else { %>
+        <ul class="favorites-grid">
+            <% favorites.forEach(f => { %>
+                <li class="favorite-card">
+                    <a href="/inv/detail/<%= f.inv_id %>">
+                        <img src="<%= f.inv_thumbnail %>" alt="<%= f.inv_make %> <%= f.inv_model %>">
+                    </a>
+                    <h3><%= f.inv_make %> <%= f.inv_model %></h3>
+
+                    <form action="/favorites/remove/<%= f.inv_id %>" method="POST">
+                        <button class="remove-btn">Remove ❌</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
+</div>

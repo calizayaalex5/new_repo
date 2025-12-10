@@ -255,3 +255,7 @@ CREATE TABLE IF NOT EXISTS public.favorites (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   UNIQUE (account_id, inv_id)
 );
+
+UPDATE inventory
+SET inv_image = '/images/vehicles/' || regexp_replace(inv_image, '^/images/', ''),
+    inv_thumbnail = '/images/vehicles/' || regexp_replace(inv_thumbnail, '^/images/', '');

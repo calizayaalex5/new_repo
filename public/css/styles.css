@@ -959,3 +959,107 @@ form button[type="submit"]:focus {
 
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 }
+
+
+.favorite-actions {
+  margin-top: 1.5rem;
+}
+
+.favorite-btn {
+  padding: .7rem 1.3rem;
+  background: #ff3366;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/***********************************
+ FAVORITES PAGE
+***********************************/
+.favorites-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.favorites-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+  color: #222;
+}
+
+/* GRID DE TARJETAS */
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+/* TARJETAS */
+.favorite-card {
+  max-width: 400px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.favorite-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+}
+
+/* IMÁGENES */
+.favorite-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+/* TÍTULO */
+.favorite-card h3 {
+  font-size: 1.1rem;
+  text-align: center;
+  margin: .8rem 0 0.5rem;
+  color: #333;
+}
+
+/* BOTÓN REMOVE */
+.remove-btn {
+  display: block;
+  margin: 0.5rem auto 0;
+  padding: 0.5rem 1.2rem;
+  background: #ff4d4d;
+  border: none;
+  color: #fff;
+  font-size: .9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.remove-btn:hover {
+  background: #e60000;
+  transform: scale(1.04);
+}
+
+/* ESTILO CUANDO NO HAY FAVORITOS */
+.no-favorites {
+  text-align: center;
+  font-size: 1.2rem;
+  background: #fff3cd;
+  color: #856404;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ffeeba;
+  margin-top: 1rem;
+}

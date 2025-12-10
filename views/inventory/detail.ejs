@@ -3,6 +3,13 @@
 
   <div class="detail-wrapper">
     <%- vehicleHTML %>
+
+    <div class="favorite-actions">
+      <form action="/favorites/add/<%= vehicle.inv_id %>" method="POST">
+        <button type="submit" class="favorite-btn">❤️ Add to Favorites</button>
+      </form>
+    </div>
+
   </div>
 </div>
 

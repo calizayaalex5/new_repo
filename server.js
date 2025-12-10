@@ -19,6 +19,7 @@ const pool = require("./database/")
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
+const favoritesRoute = require("./routes/favoritesRoute");
 
 /* ***********************
  * View Engine and templates
@@ -61,6 +62,7 @@ app.use(utilities.checkJWTToken)
 app.use(static)
 app.use("/inv", inventoryRoute)
 app.use("/account", accountRoute)
+app.use("/favorites", favoritesRoute);
 app.use("/error", errorRoute)
 //index route
 app.get("/", utilities.handleErrors(baseController.buildHome))

@@ -24,26 +24,29 @@ invCont.buildByClassificationId = async function (req, res, next) {
  ************************** */
 invCont.buildByInvId = async function (req, res, next) {
     const inv_id = req.params.inv_id
-    const data = await invModel.getVehicleByInvId(inv_id)
+    const vehicle = await invModel.getVehicleByInvId(inv_id)
     const nav = await utilities.getNav()
 
-    // ERROR HANDLING: si no existe ese vehículo
-    if (!data) {
+    // Si no existe vehículo
+    if (!vehicle) {
         const error = new Error("Vehicle not found")
         error.status = 404
         return next(error)
     }
 
-    const vehicleHTML = await utilities.buildVehicleHTML(data)
-    const name = `${data.inv_make} ${data.inv_model}`
+    const vehicleHTML = await utilities.buildVehicleHTML(vehicle)
+    const name = `${vehicle.inv_make} ${vehicle.inv_model}`
 
     res.render("./inventory/detail", {
         title: `${name} details`,
         nav,
         vehicleHTML,
-        data
+        vehicle,   // ← AHORA ES CORRECTO
+        errors: null
     })
 }
+
+
 /* ****************************************
     *  BUILD MANAGEMENT PAGE
 * *************************************** */
