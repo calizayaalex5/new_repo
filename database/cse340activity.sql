@@ -244,3 +244,14 @@ VALUES   (
     'White',
     5
   );
+
+
+-- crear tabla de favoritos
+
+CREATE TABLE IF NOT EXISTS public.favorites (
+  favorite_id SERIAL PRIMARY KEY,
+  account_id INT NOT NULL REFERENCES public.account(account_id) ON DELETE CASCADE,
+  inv_id INT NOT NULL REFERENCES public.inventory(inv_id) ON DELETE CASCADE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE (account_id, inv_id)
+);
